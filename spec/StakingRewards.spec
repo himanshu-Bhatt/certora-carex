@@ -34,189 +34,169 @@ methods{
 
 
 
-// // rule sanity(env e, method f){
-// //     calldataarg args;
-// //     f(e,args);
-// //     assert false;
-// // }
+rule sanity(env e, method f){
+    calldataarg args;
+    f(e,args);
+    assert false;
+}
 
-// // rule whoChangedDuration(method f, env e){
-// //     uint256 _duration = duration();
-// //     calldataarg args;
-// //     f(e, args);
-// //     uint256 duration_ = duration();
-// //     assert e.msg.sender!=owner() => _duration == duration_;
-// // }
-// rule integrityOfStake(){
-//     env e;uint256 amount;
-//     require(e.msg.sender!=currentContract);
+rule whoChangedDuration(method f, env e){
+    uint256 _duration = duration();
+    calldataarg args;
+    f(e, args);
+    uint256 duration_ = duration();
+    assert e.msg.sender!=owner() => _duration == duration_;
+}
+rule integrityOfStake(){
+    env e;uint256 amount;
+    require(e.msg.sender!=currentContract);
 
-//     uint256 _balance=balanceOf(e.msg.sender);
-//     uint256 _totalSupply = totalSupply();
-//     uint256 _userTokenBalance=stakingToken.balanceOf(e.msg.sender);
+    uint256 _balance=balanceOf(e.msg.sender);
+    uint256 _totalSupply = totalSupply();
+    uint256 _userTokenBalance=stakingToken.balanceOf(e.msg.sender);
 
-//     stake(e,amount);
+    stake(e,amount);
 
-//     uint256 balance_=balanceOf(e.msg.sender);
-//     uint256 totalSupply_ = totalSupply();
-//      uint256 userTokenBalance_=stakingToken.balanceOf(e.msg.sender);
+    uint256 balance_=balanceOf(e.msg.sender);
+    uint256 totalSupply_ = totalSupply();
+     uint256 userTokenBalance_=stakingToken.balanceOf(e.msg.sender);
 
-//     assert balance_==_balance+amount;
-//     assert totalSupply_ == _totalSupply + amount;
-//     assert userTokenBalance_==_userTokenBalance-amount;
-// }
-// rule integrityOfWithdraw(){
-//     env e;uint256 amount;
-//         require(e.msg.sender!=currentContract);
+    assert balance_==_balance+amount;
+    assert totalSupply_ == _totalSupply + amount;
+    assert userTokenBalance_==_userTokenBalance-amount;
+}
+rule integrityOfWithdraw(){
+    env e;uint256 amount;
+        require(e.msg.sender!=currentContract);
 
-//     uint256 _balance=balanceOf(e.msg.sender);
-//     uint256 _totalSupply = totalSupply();
-//     uint256 _userTokenBalance=stakingToken.balanceOf(e.msg.sender);
+    uint256 _balance=balanceOf(e.msg.sender);
+    uint256 _totalSupply = totalSupply();
+    uint256 _userTokenBalance=stakingToken.balanceOf(e.msg.sender);
 
-//     withdraw(e,amount);
+    withdraw(e,amount);
 
-//     uint256 balance_=balanceOf(e.msg.sender);
-//     uint256 totalSupply_ = totalSupply();
-//      uint256 userTokenBalance_=stakingToken.balanceOf(e.msg.sender);
+    uint256 balance_=balanceOf(e.msg.sender);
+    uint256 totalSupply_ = totalSupply();
+     uint256 userTokenBalance_=stakingToken.balanceOf(e.msg.sender);
 
-//     assert balance_==_balance-amount;
-//     assert amount <= _balance;
-//     assert totalSupply_== _totalSupply-amount;
-//     assert userTokenBalance_ == _userTokenBalance +amount;
-// }
+    assert balance_==_balance-amount;
+    assert amount <= _balance;
+    assert totalSupply_== _totalSupply-amount;
+    assert userTokenBalance_ == _userTokenBalance +amount;
+}
 
-// rule onlyGetRewardDecreaseRewardBalance(){
-//     address user;env e;method f;calldataarg args;
+rule onlyGetRewardDecreaseRewardBalance(){
+    address user;env e;method f;calldataarg args;
 
-//     uint256 _balance=rewards(user);
+    uint256 _balance=rewards(user);
 
-//     f(e,args);
+    f(e,args);
 
-//     uint256 balance_=rewards(user);
+    uint256 balance_=rewards(user);
 
-//     assert balance_ < _balance => f.selector == getReward().selector;
-// }
+    assert balance_ < _balance => f.selector == getReward().selector;
+}
 
-// // reduction of staked balance should only be possible with withdraw function
+// reduction of staked balance should only be possible with withdraw function
 
-// rule onlyWithdrawDecreaseBalance(){
-//     address user;env e;method f;calldataarg args;
-//     uint256 _balance = balanceOf(user);
-//     f(e,args);
-//     uint256 balance_ = balanceOf(user);
+rule onlyWithdrawDecreaseBalance(){
+    address user;env e;method f;calldataarg args;
+    uint256 _balance = balanceOf(user);
+    f(e,args);
+    uint256 balance_ = balanceOf(user);
 
-//     assert balance_ < _balance => f.selector == withdraw(uint256).selector;
+    assert balance_ < _balance => f.selector == withdraw(uint256).selector;
 
-// }
+}
 
-// // increment of staked balance should only be possible with deposit function.
-// rule onlyDepositIncreaseBalance(){
-//     address user;env e;method f;calldataarg args;
-//     uint256 _balance = balanceOf(user);
-//     f(e,args);
-//     uint256 balance_ = balanceOf(user);
+// increment of staked balance should only be possible with deposit function.
+rule onlyDepositIncreaseBalance(){
+    address user;env e;method f;calldataarg args;
+    uint256 _balance = balanceOf(user);
+    f(e,args);
+    uint256 balance_ = balanceOf(user);
 
-//     assert balance_ > _balance => f.selector == stake(uint256).selector;
+    assert balance_ > _balance => f.selector == stake(uint256).selector;
 
-// }
+}
 
-// ghost mathint totalBalance{
-//     init_state axiom totalBalance==0;
-// }
-//  hook Sstore balanceOf[KEY address addr] uint new_balance (uint256 old_balance) STORAGE {
-//     totalBalance = totalBalance + new_balance - old_balance;
-//  }
+ghost mathint totalBalance{
+    init_state axiom totalBalance==0;
+}
+ hook Sstore balanceOf[KEY address addr] uint new_balance (uint256 old_balance) STORAGE {
+    totalBalance = totalBalance + new_balance - old_balance;
+ }
 
-// invariant totalSupplyEqualSumOfBalances()
-//     totalSupply()==totalBalance
-
-
-//  ghost mathint totalRewardBalance{
-//   init_state axiom totalRewardBalance == 0;
-//   }
-//  hook Sstore rewards[KEY address addr] uint new_reward (uint256 old_reward) STORAGE {
-//     totalRewardBalance = totalRewardBalance + new_reward - old_reward;
-//  }
-
-//  //FAILED :- invariant for ensuring the protocol is not insolvent and always has enough reward Token.
-// invariant hasEnoughRewardToken()
-//     totalRewardBalance<= rewardsToken.balanceOf(currentContract){
-//         preserved with (env e){
-//             require e.block.timestamp == updatedAt();
-//         }
-//     }
+invariant totalSupplyEqualSumOfBalances()
+    totalSupply()==totalBalance
 
 
-// // finishAt() >= updatedAt() <= block.timestamp
-// invariant finishAtAheadOfUpdateAt()
-//     finishAt() >=updatedAt()
+ ghost mathint totalRewardBalance{
+  init_state axiom totalRewardBalance == 0;
+  }
+ hook Sstore rewards[KEY address addr] uint new_reward (uint256 old_reward) STORAGE {
+    totalRewardBalance = totalRewardBalance + new_reward - old_reward;
+ }
 
-// invariant updateAtLessThanBlockTimestamp(uint256 time)
-//     updatedAt()<=time
-//     {
-//     preserved with (env e) {
-//         require e.block.timestamp == time;
-//     }
-//     }
-
-// // updatedAt() can only increase
-
-// rule updateAtOnlyIncrease(){
-//     env e;method f;calldataarg args;uint t;
-//     require e.block.timestamp > updatedAt();
-//     requireInvariant finishAtAheadOfUpdateAt;
-//     requireInvariant updateAtLessThanBlockTimestamp(t);
-//     uint256 _updatedAt=updatedAt();
-//     f(e,args);
-//     uint256 updatedAt_=updatedAt();
-
-//     assert updatedAt_ >= _updatedAt;
-
-// }
-
-// // rewardPerTokenStored can only increase
-
-// rule rewardPerTokenCanOnlyIncrease(){
-//     env e;method f;calldataarg args;uint t;
-//     uint256 _rewardPerTokenStored = rewardPerTokenStored();
-//     f(e,args);
-//     uint256 _rewardPerTokenStored = rewardPerTokenStored();
-//      assert rewardPerTokenStored_ >= _rewardPerTokenStored;
-// }
+ //FAILED :- invariant for ensuring the protocol is not insolvent and always has enough reward Token.
+invariant hasEnoughRewardToken()
+    totalRewardBalance<= rewardsToken.balanceOf(currentContract){
+        preserved with (env e){
+            require e.block.timestamp == updatedAt();
+        }
+    }
 
 
-// // user reawrd balance can either increase or become 0 . It cannot decrease
-// rule userRewardBalanceCannotDecrease(){
-//     address user;env e;calldataarg args;method f;
+// finishAt() >= updatedAt() <= block.timestamp
+invariant finishAtAheadOfUpdateAt()
+    finishAt() >=updatedAt()
 
-//     uint256 _userBalance = rewards(user);
-//     f(e,args);
-//     uint256 userBalance_ = rewards(user);
+invariant updateAtLessThanBlockTimestamp(uint256 time)
+    updatedAt()<=time
+    {
+    preserved with (env e) {
+        require e.block.timestamp == time;
+    }
+    }
 
-//     assert userBalance_ >= _userBalance || userBalance_==0;
-// }
+// updatedAt() can only increase
 
-// // two user staking same amount at same time  should yield same rewards
+rule updateAtOnlyIncrease(){
+    env e;method f;calldataarg args;uint t;
+    require e.block.timestamp > updatedAt();
+    requireInvariant finishAtAheadOfUpdateAt;
+    requireInvariant updateAtLessThanBlockTimestamp(t);
+    uint256 _updatedAt=updatedAt();
+    f(e,args);
+    uint256 updatedAt_=updatedAt();
 
-// // rule rewardBalanceEqualIncrement(){
-// //     env e1;env e2;env e3;method f;calldataarg args;uint256 amount;
-// //     require(e1.msg.sender!=currentContract);
-// //     require(e1.block.timestamp == e2.block.timestamp && e1.msg.sender!=e2.msg.sender);
-   
-// //     uint256 _user1_rewards= rewards(e1.msg.sender);
-// //     uint256 _user2_rewards= rewards(e2.msg.sender);
+    assert updatedAt_ >= _updatedAt;
 
-// //     stake(e1,amount);
-// //     stake(e2,amount);
+}
+
+// rewardPerTokenStored can only increase
+
+rule rewardPerTokenCanOnlyIncrease(){
+    env e;method f;calldataarg args;uint t;
+    uint256 _rewardPerTokenStored = rewardPerTokenStored();
+    f(e,args);
+    uint256 _rewardPerTokenStored = rewardPerTokenStored();
+     assert rewardPerTokenStored_ >= _rewardPerTokenStored;
+}
 
 
-// //     require(e3.block.timestamp > e1.block.timestamp);
+// user reawrd balance can either increase or become 0 . It cannot decrease
+rule userRewardBalanceCannotDecrease(){
+    address user;env e;calldataarg args;method f;
 
-// //     uint256 user1_rewards_=earned(e3,e1.msg.sender);
-// //     uint256 user2_rewards_= earned(e3,e2.msg.sender);
+    uint256 _userBalance = rewards(user);
+    f(e,args);
+    uint256 userBalance_ = rewards(user);
 
-// //     assert user1_rewards_ - _user1_rewards == user2_rewards_ - _user2_rewards;
-// // }
+    assert userBalance_ >= _userBalance || userBalance_==0;
+}
+
+// two user staking same amount at same time  should yield same rewards
 
 rule rewardBalanceEqualIncrement(){
     env e1;env e2;env e3;  uint256 amount;
@@ -229,8 +209,8 @@ rule rewardBalanceEqualIncrement(){
 
     require e3.block.timestamp > e2.block.timestamp;
 
-    uint256 user1_rewards_ = earned(e3, e1.msg.sender);
-    uint256 user2_rewards_ = earned(e3, e2.msg.sender);
+    uint256 user1_rewards_change = earned(e3, e1.msg.sender)-_user1_rewards;
+    uint256 user2_rewards_change = earned(e3, e2.msg.sender)-_user2_rewards;
 
-    assert user1_rewards_ - _user1_rewards == user2_rewards_-_user2_rewards;
+    assert user1_rewards_change == user2_rewards_change;
 }
