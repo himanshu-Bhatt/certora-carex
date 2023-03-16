@@ -1,0 +1,13 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:183:5): identifier _rewardPerTokenStored has already been declared in scope (Spec file -> Rule rewardPerTokenCanOnlyIncrease)",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

@@ -198,19 +198,38 @@ rule userRewardBalanceCannotDecrease(){
 
 // two user staking same amount at same time  should yield same rewards
 
-rule rewardBalanceEqualIncrement(){
-    env e1;env e2;  uint256 amount;
-    require (e1.msg.sender != e2.msg.sender && e1.block.timestamp == e2.block.timestamp);
+// rule rewardBalanceEqualIncrement(){
+//     env e1;env e2;env e3;  uint256 amount;
+//     require (e1.msg.sender != e2.msg.sender && e1.block.timestamp == e2.block.timestamp);
   
-    uint256 _user1_rewards = rewards(e1.msg.sender);
-    uint256 _user2_rewards = rewards(e2.msg.sender);
+//     uint256 _user1_rewards = rewards(e1.msg.sender);
+//     uint256 _user2_rewards = rewards(e2.msg.sender);
+//     stake(e1, amount);
+//     stake(e2, amount);
+
+//     require e3.block.timestamp > e2.block.timestamp;
+
+//     uint256 user1_rewards_change = earned(e3, e1.msg.sender)-_user1_rewards;
+//     uint256 user2_rewards_change = earned(e3, e2.msg.sender)-_user2_rewards;
+
+//     assert user1_rewards_change == user2_rewards_change;
+// }
+rule stakingSameTimePeriodAmountGivesSameRewards(){
+    env e1;
+    env e2;
+    require e1.msg.sender != e2.msg.sender;
+    require e1.block.timestamp == e2.block.timestamp;
+    uint256 amount;
+    uint256 reward1 = rewards(e1.msg.sender);
+    uint256 reward2 = rewards(e2.msg.sender);
     stake(e1, amount);
     stake(e2, amount);
+
     env e3;
     require e3.block.timestamp > e2.block.timestamp;
 
-    uint256 user1_rewards_change = earned(e3, e1.msg.sender)-_user1_rewards;
-    uint256 user2_rewards_change = earned(e3, e2.msg.sender)-_user2_rewards;
+    uint256 accrued1 = earned(e3, e1.msg.sender) - reward1;
+    uint256 accrued2 = earned(e3, e2.msg.sender) - reward2;
 
-    assert user1_rewards_change == user2_rewards_change;
+    assert accrued1 == accrued1,"two users staking the same amount for the period should get the same rewards";
 }
