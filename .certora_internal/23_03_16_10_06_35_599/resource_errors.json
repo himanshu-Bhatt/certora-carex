@@ -1,0 +1,17 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:107:49): could not type expression \"calldata\", message: Cannot resolve sort \"calldata\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file: could not type expression \"f(e,args)\", message: Invalid parametric method application: call convention must be f(env, calldataarg)",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

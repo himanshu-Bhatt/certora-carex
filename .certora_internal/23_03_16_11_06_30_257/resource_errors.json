@@ -1,0 +1,49 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:59:6): Variable user is undefined (first instance only reported)",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:76:6): Variable user is undefined (first instance only reported)",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:53:5): could not type expression \"user\", message: unknown variable \"user\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:53:5): could not type expression \"stakingToken.balanceOf(user)\", message: at location StakingRewards.spec:53:5 : looked up a method stakingToken.balanceOf but some arguments are not well typed",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:59:6): could not type expression \"user\", message: unknown variable \"user\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:59:6): could not type expression \"stakingToken.balanceOf(user)\", message: at location StakingRewards.spec:59:6 : looked up a method stakingToken.balanceOf but some arguments are not well typed",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:70:5): could not type expression \"user\", message: unknown variable \"user\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:70:5): could not type expression \"stakingToken.balanceOf(user)\", message: at location StakingRewards.spec:70:5 : looked up a method stakingToken.balanceOf but some arguments are not well typed",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:76:6): could not type expression \"user\", message: unknown variable \"user\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:76:6): could not type expression \"stakingToken.balanceOf(user)\", message: at location StakingRewards.spec:76:6 : looked up a method stakingToken.balanceOf but some arguments are not well typed",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

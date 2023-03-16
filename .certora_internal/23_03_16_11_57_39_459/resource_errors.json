@@ -1,0 +1,17 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:167:22): Could not find invariant finishAtAheadOfUpdateAt",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:168:22): Could not find invariant updateAtLessThanBlockTimestamp",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

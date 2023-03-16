@@ -1,0 +1,17 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:84:11): could not type expression \"updateAt()\", message: could not find a function with canonical name updateAt(). For the name updateAt, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:84:11): could not type expression \"updateAt() <= e.block.timestamp\", message: could not find a function with canonical name updateAt(). For the name updateAt, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

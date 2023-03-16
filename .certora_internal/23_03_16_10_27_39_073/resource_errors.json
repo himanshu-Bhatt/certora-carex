@@ -1,0 +1,17 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:82:5): could not type expression \"deposit(uint256)\", message: could not find a function with canonical name deposit(uint256). For the name deposit, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:82:5): could not type expression \"deposit(uint256).selector\", message: deposit(uint256) could not be typed",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

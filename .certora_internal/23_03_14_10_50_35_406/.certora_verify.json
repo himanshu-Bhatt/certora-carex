@@ -1,0 +1,16 @@
+[
+    {
+        "importFilesToOrigRelpaths": {
+            ".certora_internal/23_03_14_10_50_35_406/.certora_config/0_erc20.spec.spec": "erc20.spec"
+        },
+        "primary_contract": "StakingRewardsHarness",
+        "specfile": ".certora_internal/23_03_14_10_50_35_406/.certora_config/0_StakingRewards.spec.spec",
+        "specfileOrigRelpath": "StakingRewards.spec",
+        "specfilesToImportDecls": {
+            ".certora_internal/23_03_14_10_50_35_406/.certora_config/0_StakingRewards.spec.spec": [
+                "./erc20.spec"
+            ]
+        },
+        "type": "spec"
+    }
+]

@@ -1,0 +1,13 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "spec/StakingRewards.spec:126:49: Syntax error: unexpected token near new",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

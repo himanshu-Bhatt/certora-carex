@@ -1,0 +1,33 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:63:5): could not type expression \"SumOfRewards\", message: unknown variable \"SumOfRewards\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:65:11): Variable sumOfReward is undefined (first instance only reported)",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:65:11): could not type expression \"sumOfReward\", message: unknown variable \"sumOfReward\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:65:11): could not type expression \"sumOfReward <= rewardsToken.balanceOf(currentContract)\", message: unknown variable \"sumOfReward\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:63:5): could not type expression \"SumOfRewards+intreward\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:63:5): could not type expression \"SumOfRewards+intreward-old_reward\"",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

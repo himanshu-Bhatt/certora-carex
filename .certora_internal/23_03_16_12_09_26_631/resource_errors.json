@@ -1,0 +1,21 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:233:5): Variable reward2 is undefined (first instance only reported)",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:233:5): could not type expression \"reward2\", message: unknown variable \"reward2\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:233:5): could not type expression \"earned(e3,e2.msg.sender)-reward2\"",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

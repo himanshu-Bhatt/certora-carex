@@ -1,0 +1,13 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:168:22): Wrong number of arguments passed to updateAtLessThanBlockTimestamp: expected 1, got 0",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

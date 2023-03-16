@@ -1,0 +1,33 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:62:11): Variable rewardRate is undefined (first instance only reported)",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:62:11): Variable duration is undefined (first instance only reported)",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:62:11): could not type expression \"rewardRate\", message: unknown variable \"rewardRate\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:62:11): could not type expression \"duration\", message: unknown variable \"duration\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:62:11): could not type expression \"rewardRate * duration\"",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:62:11): could not type expression \"rewardRate * duration <= rewardsToken.balanceOf(currentContract)\", message: type error in rewardRate * duration",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:79:11): could not type expression \"finsishAt()\", message: could not find a function with canonical name finsishAt(). For the name finsishAt, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:79:11): could not type expression \"updateAt()\", message: could not find a function with canonical name updateAt(). For the name updateAt, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (StakingRewards.spec:79:11): could not type expression \"finsishAt() >= updateAt()\", message: could not find a function with canonical name finsishAt(). For the name finsishAt, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}
